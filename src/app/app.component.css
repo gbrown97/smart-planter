@@ -77,7 +77,8 @@
 
   .card-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
     margin-top: 16px;
   }
@@ -102,14 +103,14 @@
 
   mat-card {
     width: 600px;
-    height: 40px;
+    height: 80px;
     border-radius: 4px;
     border: 1px solid #855833;
     background-color: #855833;
     margin: 0 8px 16px;
     padding: 16px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
@@ -125,11 +126,28 @@
 
   mat-card-content {
     display:flex;
-    flex-direction: row;   
+    flex-direction: row;  
+    font-size: 32px; 
   }
 
   mat-progress-spinner {
     padding: 0px 32px 0px 0px;
+  }
+
+  mat-card-footer {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+  }
+
+  div.spinner-label {
+    display: flex;
+    padding: 0px 32px 0px 0px;
+  }
+
+  div.card-title {
+    display: flex;
+    padding: 20px 32px 0px 0px;
   }
 
   .button.add-card {
