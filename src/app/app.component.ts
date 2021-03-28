@@ -41,10 +41,13 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != '' || result != undefined){
-        let cloneData = JSON.parse(JSON.stringify(result));
-        this.plantList.push(cloneData);
+      try {
+        if(result.name == null || result != undefined){
+          let cloneData = JSON.parse(JSON.stringify(result));
+          this.plantList.push(cloneData);
+        }
       }
+      catch {}
     });
   }
 }
