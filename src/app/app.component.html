@@ -123,9 +123,11 @@
         </mat-progress-spinner>
       </mat-card-content>
     </mat-card>
+    
+  </div>
 
-    <button type="button" class="button add-card"><i class="material-icons">add</i>Add Card</button>
-
+  <div class="row">
+    <button type="button" class="button add-card" (click)="addPlant()"><i class="material-icons">add</i>Add Card</button>
   </div>
 
   <input type="hidden" #selection>
