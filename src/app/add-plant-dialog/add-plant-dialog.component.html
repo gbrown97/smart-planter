@@ -1,10 +1,42 @@
-<h2 mat-dialog-title>Add Plant</h2>
+<h1 mat-dialog-title>Add Plant</h1>
 <mat-dialog-content class="mat-typography">
-  
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <input matInput [(ngModel)]="data.type">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Minimum Temperature</mat-label>
+    <input matInput [(ngModel)]="data.minTemp">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Maximum Temperature</mat-label>
+    <input matInput [(ngModel)]="data.maxTemp">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Sunlight Level</mat-label>
+    <mat-select [(value)]="data.sunlightLevel">
+      <mat-option value="Low">Low</mat-option>
+      <mat-option value="Medium">Medium</mat-option>
+      <mat-option value="High">High</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Minimum Moisture</mat-label>
+    <input matInput [(ngModel)]="data.minMoisture">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Maximum Moisture</mat-label>
+    <input matInput [(ngModel)]="data.maxMoisture">
+  </mat-form-field>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Apply</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Apply</button>
 </mat-dialog-actions>
 
 
