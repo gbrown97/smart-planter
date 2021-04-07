@@ -50,4 +50,10 @@ export class AppComponent {
       catch {}
     });
   }
+
+  removePlant(plant:PlantDefinition) {
+    if(confirm("Are you sure you want to delete "+plant.name+"?")) {
+      this.plantList.splice(this.plantList.indexOf(plant), 1);
+    }
+  }
 }

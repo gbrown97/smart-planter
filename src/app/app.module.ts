@@ -11,6 +11,9 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.component';
 
 @NgModule({
@@ -28,6 +31,9 @@ import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.com
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    // FlexLayoutModule,
     FormsModule
     
   ],
