@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { from } from 'rxjs';
 import { AddPlantDialogComponent } from '../app/add-plant-dialog/add-plant-dialog.component'
+import { PlantDatabaseService } from '../services/plant-database.service'
 
 export interface PlantDefinition {
   name: string,
   type: string,
-  minTemp: number,
-  maxTemp: number,
+  minTemperature: number,
+  maxTemperature: number,
+  currentTemperature: number,
   sunlightLevel: string,
+  currentSunlightLevel: number,
   minMoisture: number,
-  maxMoisture: number
+  maxMoisture: number,
+  currentMoisture: number,
 }
 
 @Component({
@@ -23,16 +28,30 @@ export class AppComponent {
   plantDef: PlantDefinition = {
     name: "Plant",
     type: "Generic Type",
-    minTemp: 70,
-    maxTemp: 80,
+    minTemperature: 70,
+    maxTemperature: 80,
+    currentTemperature: 0,
     sunlightLevel: "Medium",
+    currentSunlightLevel: 0,
     minMoisture: 1,
-    maxMoisture: 10
+    maxMoisture: 10,
+    currentMoisture: 0
   }
 
   plantList: Array<PlantDefinition> = [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public dbService: PlantDatabaseService
+  ) {}
+
+  ngOnInit() {
+    this.dbService.getAll().subscribe(
+      rtv => {
+        this.plantList = rtv;
+      }
+    )
+  }
 
   addPlant() {
     const dialogRef = this.dialog.open(AddPlantDialogComponent, {
@@ -45,6 +64,11 @@ export class AppComponent {
         if(result.name == null || result != undefined){
           let cloneData = JSON.parse(JSON.stringify(result));
           this.plantList.push(cloneData);
+          this.dbService.create(cloneData).subscribe(
+            rtv => {
+              console.log("Sent plant: ", cloneData);
+            }
+          );
         }
       }
       catch {}

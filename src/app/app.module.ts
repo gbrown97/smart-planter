@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.component';
 
+import { PlantDatabaseService } from '../services/plant-database.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,7 @@ import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.com
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatDialogModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -37,7 +41,9 @@ import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.com
     FormsModule
     
   ],
-  providers: [],
+  providers: [
+    PlantDatabaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

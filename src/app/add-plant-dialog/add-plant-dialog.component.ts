@@ -5,8 +5,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface PlantDefinition {
   name: string,
   type: string,
-  minTemp: number,
-  maxTemp: number,
+  minTemperature: number,
+  maxTemperature: number,
   sunlightLevel: string,
   minMoisture: number,
   maxMoisture: number
