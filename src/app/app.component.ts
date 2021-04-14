@@ -78,6 +78,11 @@ export class AppComponent {
   removePlant(plant:PlantDefinition) {
     if(confirm("Are you sure you want to delete "+plant.name+"?")) {
       this.plantList.splice(this.plantList.indexOf(plant), 1);
+      this.dbService.delete(plant.name).subscribe(
+        rtv => {
+          console.log(rtv);
+        }
+      )
     }
   }
 }
