@@ -14,7 +14,7 @@ export interface PlantDefinition {
   currentSunlightLevel: number,
   minMoisture: number,
   maxMoisture: number,
-  currentMoisture: number,
+  currentMoisture: number
 }
 
 @Component({
@@ -24,18 +24,19 @@ export interface PlantDefinition {
 })
 export class AppComponent {
   title = 'smart-planter';
+  valid: number = 1;
 
   plantDef: PlantDefinition = {
     name: "Plant",
     type: "Generic Type",
     minTemperature: 70,
     maxTemperature: 80,
-    currentTemperature: 0,
+    currentTemperature: 75,
     sunlightLevel: "Medium",
     currentSunlightLevel: 0,
     minMoisture: 1,
     maxMoisture: 10,
-    currentMoisture: 0
+    currentMoisture: 5
   }
 
   plantList: Array<PlantDefinition> = [];

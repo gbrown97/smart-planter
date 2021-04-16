@@ -14,9 +14,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-// import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddPlantDialogComponent } from './add-plant-dialog/add-plant-dialog.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { PlantDatabaseService } from '../services/plant-database.service'
 
 @NgModule({
@@ -37,7 +36,7 @@ import { PlantDatabaseService } from '../services/plant-database.service'
     MatSelectModule,
     MatIconModule,
     MatButtonModule,
-    // FlexLayoutModule,
+    MatTooltipModule,
     FormsModule
     
   ],

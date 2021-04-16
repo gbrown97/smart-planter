@@ -33,7 +33,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #12ac40;
+    background-color: rgb(36, 141, 36);
     color: white;
     font-weight: 600;
   }
@@ -51,6 +51,14 @@
   .button.settings:hover{
     border: 2px solid black;
     cursor: pointer;
+  }
+
+  .bg {
+    background-image: url("https://mdbcdn.b-cdn.net/img/Photos/Others/img%20%2848%29.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .content {
@@ -104,6 +112,7 @@
     line-height: 24px;
     font-size: 20px;
     color: white;
+    opacity: 1;
   }
 
   .mat-card-header .mat-card-title {
@@ -121,19 +130,10 @@
     font-size: 32px; 
   }
 
-  mat-progress-spinner {
-    padding: 0px 32px 0px 0px;
-  }
-
   mat-card-footer {
     display: flex;
     flex-direction: row;
     font-size: 16px;
-  }
-
-  div.spinner-label {
-    display: flex;
-    padding: 0px 32px 0px 0px;
   }
 
   div.card-title {
@@ -144,10 +144,11 @@
   .button.add-card {
     display: flex;
     padding: 12px;
-    background-color: rgb(34, 139, 51);
+    background-color: rgb(36, 141, 36);
     color: white;
     align-items: center;
     justify-content: center;
+    height: 50px;
   }
 
   .button.remove-card {
@@ -158,6 +159,27 @@
     justify-content: center;
     height: 32px;
     width: 128px;
+  }
+
+  .inSpec {
+    background-color: rgb(36, 141, 36);
+    color: white;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+
+  .warningSpec {
+    background-color: rgb(223, 140, 16);
+    color: white;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+
+  .outOfSpec {
+    background-color: rgb(179, 57, 57);
+    color: white;
+    margin-right: 8px;
+    margin-left: 8px;
   }
 
   .card-container .card:not(:last-child) {
@@ -174,7 +196,7 @@
   }
 
   .card.highlight-card {
-    background-color: #12ac40;
+    background-color: rgb(36, 141, 36);
     color: white;
     font-weight: 600;
     font-size: 20px;

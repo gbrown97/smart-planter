@@ -1,66 +1,66 @@
+<div class="bg">
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">
+    <button type="button" class="button settings"><i class="material-icons">settings</i>Settings</button>
+  </div>
 
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <button type="button" class="button settings"><i class="material-icons">settings</i>Settings</button>
-</div>
-
-<ng-container>
-<div class="content" role="main">
+  <ng-container>
+  <div class="content" role="main">
 
   <!-- Highlight Card -->
-  <div class="col ui-g-12 card highlight-card card-small">
+    <div class="col ui-g-12 card highlight-card card-small">
 
     <!-- <span>Smart Planter</span> -->
-    Smart Planter
-  </div>
+      <mat-icon>local_florist</mat-icon>
+      Smart Planter
+      <mat-icon>local_florist</mat-icon>
+    </div>
 
-  <div class="col ui-g-12 card-container">
-  <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center"> -->
-    <mat-card *ngFor="let p of plantList">
-      <mat-card-header>
-        <mat-card-title>
-          {{p.name}}
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <!-- <div class="card-title">{{p.name}}</div> -->
-        <button mat-fab style="margin-right:8px; margin-left:8px; color:white; background-color:rgb(36, 141, 36)" aria-label="Sunlight">
-          <mat-icon>wb_sunny</mat-icon>
-        </button>
-        <button mat-fab style="margin-right:8px; margin-left:8px; color:white; background-color:rgb(223, 140, 16)" aria-label="Soil_Moisture">
-          <mat-icon>opacity</mat-icon>
-        </button>
-        <button mat-fab style="margin-right:8px; margin-left:8px; color:white; background-color:rgb(179, 57, 57)" aria-label="Temperature">
-          <mat-icon>whatshot</mat-icon>
-        </button>
-
-        <!-- <button type="button" class="button remove-card">Remove Card</button> -->
-
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="removePlant(p)">Remove Card</button>
-      </mat-card-actions>
-      <!-- <mat-card-footer>
-        <div class="spinner-label">Soil Moisture</div>
-        <div class="spinner-label">Sunlight</div>
-        <div class="spinner-label">Temperature</div>
-      </mat-card-footer> -->
-    </mat-card>
+    <div class="col ui-g-12 card-container">
+      <mat-card *ngFor="let p of plantList">
+        <mat-card-header>
+          <mat-card-title>
+            {{p.name}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-fab [ngClass]="{inSpec:valid==1,warningSpec:valid==2,outOfSpec:valid==3}" aria-label="Sunlight">
+            <mat-icon>wb_sunny</mat-icon>
+          </button>
+          <button mat-fab matTooltip="{{'Current Moisture: '+p.currentMoisture+'\nMin Moisture: '+p.minMoisture+'\nMax Moisture: '+p.maxMoisture}}"
+          [ngClass]="{inSpec:p.currentMoisture>=p.minMoisture&&p.currentMoisture<=p.maxMoisture,
+            outOfSpec:p.currentMoisture<p.minMoisture||p.currentMoisture>p.maxMoisture,
+              warningSpec:p.currentMoisture<=((p.maxMoisture-p.minMoisture)/4)+p.minMoisture&&p.currentMoisture>=p.minMoisture}" aria-label="Soil_Moisture">
+            <mat-icon>opacity</mat-icon>
+          </button>
+          <button mat-fab matTooltip="{{'Current Temperature: '+p.currentTemperature+' Degrees F'+'\nMin Temperature: '+p.minTemperature+'\nMax Temperature: '+p.maxTemperature}}" 
+          [ngClass]="{inSpec:p.currentTemperature>=p.minTemperature&&p.currentTemperature<=p.maxTemperature,
+            outOfSpec:p.currentTemperature<p.minTemperature||p.currentTemperature>p.maxTemperature,
+              warningSpec:p.currentTemperature<=((p.maxTemperature-p.minTemperature)/4)+p.minTemperature&&p.currentTemperature>=p.minTemperature}" aria-label="Temperature">
+            <mat-icon>whatshot</mat-icon>
+          </button>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="removePlant(p)">Remove Card</button>
+        </mat-card-actions>
+      </mat-card>
     
-  </div>
+    </div>
 
-  <div class="row">
-    <button type="button" class="button add-card" (click)="addPlant()"><i class="material-icons">add</i>Add Card</button>
-  </div>
+    <div class="row">
+      <button mat-button class="button add-card" (click)="addPlant()"><i class="material-icons">add</i>Add Card</button>
+    </div>
 
-  <input type="hidden" #selection>
+    <input type="hidden" #selection>
 
  
-  <footer>
+    <footer>
       
-  </footer>
+    </footer>
 
+  </div>
+  </ng-container>
+
+
+  <router-outlet></router-outlet>
 </div>
-</ng-container>
-
-<router-outlet></router-outlet>
