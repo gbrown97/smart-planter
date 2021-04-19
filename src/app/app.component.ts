@@ -57,12 +57,28 @@ export class AppComponent {
       console.log("here");
       this.dbService.refresh().subscribe(
         rtv => {
-          console.log("Refresh", rtv)
-        }
-      )
-    }, 3000);
+          console.log("Refresh", rtv);
+          this.refresh();
+        },
+	err => {
+	 console.log("Err", err);
+         this.refresh();
+	})
+    }, 1000);
   }
 
+  refresh(){
+    this.dbService.refresh().subscribe(
+       rtv => {
+         console.log("Refresh", rtv);
+         this.refresh();
+       },
+       err => {
+         console.log("Refresh", err);
+         this.refresh();
+       }
+    )
+  }	
 
   addPlant() {
     const dialogRef = this.dialog.open(AddPlantDialogComponent, {
