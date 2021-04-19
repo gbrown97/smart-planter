@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { from } from 'rxjs';
 import { AddPlantDialogComponent } from '../app/add-plant-dialog/add-plant-dialog.component'
@@ -52,7 +52,17 @@ export class AppComponent {
         this.plantList = rtv;
       }
     )
+
+    setTimeout(() => {
+      console.log("here");
+      this.dbService.refresh().subscribe(
+        rtv => {
+          console.log("Refresh", rtv)
+        }
+      )
+    }, 3000);
   }
+
 
   addPlant() {
     const dialogRef = this.dialog.open(AddPlantDialogComponent, {
