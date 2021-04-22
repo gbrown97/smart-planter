@@ -64,7 +64,7 @@ export class AppComponent {
 	 console.log("Err", err);
          this.refresh();
 	})
-    }, 1000);
+    }, 5000);
   }
 
   refresh(){
