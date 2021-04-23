@@ -1,6 +1,7 @@
 import { Component, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { from } from 'rxjs';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { AddPlantDialogComponent } from '../app/add-plant-dialog/add-plant-dialog.component'
 import { PlantDatabaseService } from '../services/plant-database.service'
 
@@ -41,10 +42,16 @@ export class AppComponent {
 
   plantList: Array<PlantDefinition> = [];
 
+  plantInfo$: Observable<any>;
+
   constructor(
     public dialog: MatDialog,
     public dbService: PlantDatabaseService
-  ) {}
+  ) 
+  {
+    this.plantInfo$ = this.dbService.refresh();
+    console.log(this.plantInfo$);
+  }
 
   ngOnInit() {
     this.dbService.getAll().subscribe(
@@ -52,33 +59,8 @@ export class AppComponent {
         this.plantList = rtv;
       }
     )
-
-    setTimeout(() => {
-      console.log("here");
-      this.dbService.refresh().subscribe(
-        rtv => {
-          console.log("Refresh", rtv);
-          this.refresh();
-        },
-	err => {
-	 console.log("Err", err);
-         this.refresh();
-	})
-    }, 5000);
   }
 
-  refresh(){
-    this.dbService.refresh().subscribe(
-       rtv => {
-         console.log("Refresh", rtv);
-         this.refresh();
-       },
-       err => {
-         console.log("Refresh", err);
-         this.refresh();
-       }
-    )
-  }	
 
   addPlant() {
     const dialogRef = this.dialog.open(AddPlantDialogComponent, {
