@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'http://localhost:8080/api/plants';
@@ -8,6 +8,12 @@ const baseUrl = 'http://localhost:8080/api/plants';
   providedIn: 'root'
 })
 export class PlantDatabaseService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
   
   constructor(private http: HttpClient) { }
 
@@ -22,6 +28,11 @@ export class PlantDatabaseService {
 
   update(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
+  }
+
+  refresh(): Observable<any>{
+    console.log("Subbed");
+    return this.http.get(`${baseUrl}` + `/refresh`, this.httpOptions);
   }
 
   delete(id: any): Observable<any> {
