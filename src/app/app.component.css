@@ -21,10 +21,6 @@
     margin: 0;
   }
 
-  .spacer {
-    flex: 1;
-  }
-
   .toolbar {
     position: absolute;
     top: 0;
@@ -63,8 +59,8 @@
 
   .content {
     display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
+    margin: 58px auto 32px;
+    padding: 16px;
     max-width: 960px;
     flex-direction: column;
     align-items: center;
@@ -233,15 +229,5 @@
       margin-left: 72px;
     }
 
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
   }
 
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
