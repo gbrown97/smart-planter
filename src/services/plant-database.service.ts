@@ -12,6 +12,7 @@ export class PlantDatabaseService {
 
   public plantData$: Observable<any>;
   private stopPolling = new Subject();
+  private data$ = new Subject();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -29,13 +30,26 @@ export class PlantDatabaseService {
       takeUntil(this.stopPolling)
     );
     
-    this.plantData$.subscribe();
+    this.plantData$.subscribe(
+      rtv => {
+        console.log("PLANT DATA: ", rtv);
+        this.setData(rtv);
+      }
+    );
 
-   }
+  }
 
-   ngOnDestroy(){
-     this.stopPolling.next();
-   }
+  ngOnDestroy(){
+    this.stopPolling.next();
+  }
+
+  getData(): Observable<any> {
+    return this.data$;
+  }
+
+  setData(data: any) {
+    this.data$.next(data);
+  }
 
   getAll(): Observable<any> {
     return this.http.get(baseUrl);

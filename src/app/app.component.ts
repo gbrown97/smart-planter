@@ -44,6 +44,8 @@ export class AppComponent {
 
   plantInfo$: any;
 
+  plantData: any;
+
   constructor(
     public dialog: MatDialog,
     public dbService: PlantDatabaseService
@@ -60,6 +62,11 @@ export class AppComponent {
       }
     )
 
+    this.dbService.getData().subscribe(
+      rtv => {
+        this.plantData = rtv;
+      }
+    )
     setTimeout(() => this.updatePlant(), 5000);
 
   }
@@ -68,9 +75,9 @@ export class AppComponent {
     console.log("here");
     if(this.plantList[0] !== undefined){
       console.log(this.plantList[0]);
-      this.plantList[0].currentTemperature = this.plantInfo$.tempF;
-      this.plantList[0].currentMoisture = this.plantInfo$.moisture/1023;
-      this.plantList[0].currentSunlightLevel = this.plantInfo$.visibleLight;
+      this.plantList[0].currentTemperature = this.plantData.tempF;
+      this.plantList[0].currentMoisture = this.plantData.moisture/1023;
+      this.plantList[0].currentSunlightLevel = this.plantData.visibleLight;
     }
     setTimeout(() => this.updatePlant(), 5000);
   }
