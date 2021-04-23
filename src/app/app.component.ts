@@ -64,6 +64,7 @@ export class AppComponent {
 
   processInfo(info: any){
     if(this.plantList[0] !== undefined){
+      console.log(this.plantList[0]);
       this.plantList[0].currentTemperature = info.tempF;
       this.plantList[0].currentMoisture = info.moisture/1023;
       this.plantList[0].currentSunlightLevel = info.visibleLight;
