@@ -50,6 +50,7 @@ export class AppComponent {
   ) 
   {
     this.plantInfo$ = this.dbService.refresh();
+    this.processInfo(this.plantInfo$);
     console.log(this.plantInfo$);
   }
 
@@ -59,6 +60,15 @@ export class AppComponent {
         this.plantList = rtv;
       }
     )
+  }
+
+  processInfo(info: any){
+    if(this.plantList[0] !== undefined){
+      this.plantList[0].currentTemperature = info.tempF;
+      this.plantList[0].currentMoisture = info.moisture/1023;
+      this.plantList[0].currentSunlightLevel = info.visibleLight;
+    }
+
   }
 
 
