@@ -42,36 +42,38 @@ export class AppComponent {
 
   plantList: Array<PlantDefinition> = [];
 
-  plantInfo$: Observable<any>;
+  plantInfo$: any;
 
   constructor(
     public dialog: MatDialog,
     public dbService: PlantDatabaseService
   ) 
   {
-    this.plantInfo$ = this.dbService.refresh();
-    this.processInfo(this.plantInfo$);
-    console.log(this.plantInfo$);
   }
 
   ngOnInit() {
     this.dbService.getAll().subscribe(
       rtv => {
         this.plantList = rtv;
+        this.plantInfo$ = this.dbService.refresh();
+        console.log(this.plantInfo$);
       }
     )
+
+    setTimeout(() => this.updatePlant(), 5000);
+
   }
 
-  processInfo(info: any){
+  updatePlant(){
+    console.log("here");
     if(this.plantList[0] !== undefined){
       console.log(this.plantList[0]);
-      this.plantList[0].currentTemperature = info.tempF;
-      this.plantList[0].currentMoisture = info.moisture/1023;
-      this.plantList[0].currentSunlightLevel = info.visibleLight;
+      this.plantList[0].currentTemperature = this.plantInfo$.tempF;
+      this.plantList[0].currentMoisture = this.plantInfo$.moisture/1023;
+      this.plantList[0].currentSunlightLevel = this.plantInfo$.visibleLight;
     }
-
+    setTimeout(() => this.updatePlant(), 5000);
   }
-
 
   addPlant() {
     const dialogRef = this.dialog.open(AddPlantDialogComponent, {
